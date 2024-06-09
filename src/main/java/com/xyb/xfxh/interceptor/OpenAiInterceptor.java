@@ -28,7 +28,7 @@ import java.util.TimeZone;
 /**
 
  * @author 云深不知处
- * @description 自定义拦截器
+ * @description 自定义拦截器【本意是跟chatgpt一样拦截apikey再封装token，但后面发现星火模型有点不同，于是在AuthUtil里处理好了】
  */
 public class OpenAiInterceptor implements Interceptor {
 

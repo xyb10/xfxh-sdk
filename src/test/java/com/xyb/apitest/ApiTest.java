@@ -27,8 +27,6 @@ import java.util.concurrent.CountDownLatch;
 public class ApiTest {
     private OpenAiSession openAiSession;
 
-    private StringBuilder answer = new StringBuilder();
-
     @Before
     public void test_OpenAiSessionFactory() {
         // 1. 配置文件
@@ -78,7 +76,6 @@ public class ApiTest {
                 }
                 // 将回答进行拼接
                 for (MsgDTO msgDTO : responseData.getPayload().getChoices().getText()) {
-//                    apiTest.answer.append(msgDTO.getContent());
                     log.info("text:"+msgDTO.getContent());
 
                 }
