@@ -51,3 +51,40 @@ public class DefaultOpenAiSession implements OpenAiSession {
     }
 }
 ```
+
+快速使用sdk
+sdk坐标
+```
+<!--讯飞星火认知模型-->
+            <dependency>
+                <groupId>com.xyb</groupId>
+                <artifactId>xfxh-sdk-java</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+```
+注意：未发布到mvn，故需要下载源码再install到本地maven仓库，然后在你的项目工程中引入即可
+配置
+```
+@Configuration
+@EnableConfigurationProperties(XfxhSDKConfigProperties.class)
+public class XfxhSDKConfig {
+
+    @Bean(name = "xfxhOpenAiSession")
+    public OpenAiSession openAiSession(XfxhSDKConfigProperties properties) {
+        // 配置文件
+        com.xyb.xfxh.session.Configuration configuration = new com.xyb.xfxh.session.Configuration();
+        configuration.setAppId(properties.appId);
+        configuration.setApiSecret(properties.apiSecret);
+        configuration.setApiHost(properties.apiHost);
+        configuration.setApiKey(properties.apiKey);
+
+        // 会话工厂
+        DefaultOpenAiSessionFactory factory = new DefaultOpenAiSessionFactory(configuration);
+
+        // 开启会话
+        return factory.openSession();
+    }
+
+}
+```
+最后直接使用xfxhOpenAiSession接口调用里面的方法就好啦
